@@ -10,8 +10,9 @@ jobs:
           pip install make
           pip install NPM
           pip install NodeJS
-#          make install
           make setup
+          make install
+          make build
           make start
       - name: Run tests
         run: |
