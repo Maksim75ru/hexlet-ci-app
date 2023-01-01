@@ -7,9 +7,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Using
         run: |
-          pip install make
-          pip install NPM
-          pip install NodeJS
+#          pip install make
+#          pip install NPM
+#          pip install NodeJS
           make setup
           make install
           make build
