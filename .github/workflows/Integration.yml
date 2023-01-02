@@ -5,18 +5,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+
       - name: Using
         run: |
           pip install make
           pip install NPM
           pip install NodeJS
           make setup
-#          make install
-#          make build
-#          make start
       - name: Run tests
         run: |
           make test
       - name: Run linter
         run: |
           make lint
+
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
